@@ -1,0 +1,9 @@
+{% block subject %} Confirmez votre email {% endblock %}
+
+{% block body %}
+    <p>Bonjour,</p>
+    <p>Merci de vous être inscrit. Veuillez confirmer votre adresse e-mail en cliquant sur le bouton ci-dessous :</p>
+    <a href="{{ signedUrl }}" style="padding: 10px; background: blue; color: white; text-decoration: none;">Activer mon compte</a>
+    <p>Si vous ne voyez pas le bouton, copiez-collez ce lien dans votre navigateur :</p>
+    <p>{{ signedUrl }}</p>
+{% endblock %}

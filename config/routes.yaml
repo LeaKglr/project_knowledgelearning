@@ -3,3 +3,13 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+admin:
+    path: /admin
+    controller: App\Controller\Admin\AdminDashboardController::index
+    
+docs:
+    path: /docs
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: '/public/docs/index.html.twig'

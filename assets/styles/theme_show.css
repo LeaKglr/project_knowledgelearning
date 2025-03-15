@@ -1,0 +1,46 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+}
+
+.courses {
+    display: flex;
+    margin: 50px;
+}
+
+.course-card {
+    margin: 50px;
+    border: solid 2px #00497c;
+    padding: 20px;
+    border-radius: 8%;
+}
+
+.lesson {
+    padding: 20px;
+}
+
+#backhome {
+    background-color: #384050;
+}
+
+#ButtonValidated {
+    background-color: #82b864;
+    color: #f1f8fc;
+}
+
+#ButtonShowLesson {
+    background-color: #00497c;
+    color: #f1f8fc;
+}
+
+#buyCourseLesson {
+    background-color: #0074c7;
+    color: #f1f8fc;
+}
+
+#goValidated {
+    background-color: #cd2c2e;
+    color: #f1f8fc;
+}

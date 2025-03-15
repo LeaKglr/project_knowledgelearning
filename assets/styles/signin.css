@@ -1,0 +1,75 @@
+/* Style général du formulaire */
+.fieldFormConnexion {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #00497c;
+}
+
+/* Titre */
+.fieldFormConnexion h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Champs de connexion */
+.fieldConnexion {
+    text-align: left;
+}
+
+.fieldConnexion label {
+    display: block;
+    margin-top: 10px;
+}
+
+.fieldConnexion input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #00497c;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Bouton de connexion */
+.fieldFormConnexion .btn-primary {
+    width: 60%;
+    padding: 10px;
+    background: #00497c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.fieldFormConnexion .btn-primary:hover {
+    background: #0056b3;
+}
+
+/* Section inscription */
+.inscription {
+    margin-top: 15px;
+}
+
+.inscription p {
+    font-size: 14px;
+}
+
+/* Bouton d'inscription */
+.inscription .btn {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.inscription .register {
+    text-decoration: none;
+    color: #00497c;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+

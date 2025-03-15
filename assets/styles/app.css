@@ -1,3 +1,83 @@
+@font-face {
+    font-family: 'Comic Sans MS';
+    src: url('/assets/fontfamily/ComicSansMS.ttf');
+}
 body {
-    background-color: skyblue;
+    background-color: #f1f8fc;
+    font-family: 'Comic Sans MS';
+}
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    gap: 20px;
+    align-items: end;
+    background-color: #0074c7;
+}
+
+.navbar {
+    border-radius: 8px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #f1f8fc;
+    font-weight: normal;
+}
+
+nav ul li a.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.branding img {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.allthemes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.themes {
+    max-width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+img {
+    width: 400px;
+    height: 300px;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
 }

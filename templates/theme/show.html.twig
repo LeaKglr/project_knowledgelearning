@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Cursus pour le thème {{ theme.name }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="body">
+        <h1>📚 Cursus disponibles pour le thème : {{ theme.name }}</h1>
+
+        <div class="courses">
+            {% for course in courses %}
+                <div class="course-card">
+
+                    <h3>{{ course.name }}</h3>
+                    <p>Prix : {{ course.price }} €</p>
+
+                    {% if app.user and app.user.isVerified %}
+                        {% if course.id in validatedCourses %}
+                            <!-- ✅ Cursus validé -->
+                            <a href="#" class="btn" id="ButtonValidated">Cursus validé ✅</a>
+                        {% elseif purchasedCourses is not empty and course.id in purchasedCourses %}
+                            <!-- 🎓 Cursus acheté mais non validé -->
+                            <a href="#" class="btn" id="goValidated">En avant pour valider les leçons !</a>
+                        {% elseif course.id in partiallyPurchasedCourses %}
+                            <!-- ⚠️ Certaines leçons du cursus ont déjà été achetées -->
+                            <a href="#" class="btn btn-warning">Impossible d'acheter le cursus : certaines leçons sont déjà achetées.</a>
+                            <p>Veuillez acheter le reste des leçons individuellement.</p>
+                        {% else %}
+                            <!-- 🛒 Achat du cursus -->
+                            <button class="btn checkout-course-button" data-course-id="{{ course.id }}" id="buyCourseLesson">Acheter le cursus</button>
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h4>Leçons :</h4>  
+                            {% for lesson in course.lessons %}                               
+                                <div class="lesson">
+                                    <p>{{ lesson.title }} - {{ lesson.price }} €</p>
+                                    {% if lesson.id in purchasedLessons %}
+                                        <a href="{{ path('lesson_show', { id: lesson.id }) }}" class="btn" id="ButtonShowLesson">Voir la leçon</a>
+                                    {% else %}
+                                        <button class="btn checkout-button" data-lesson-id="{{ lesson.id }}" id="buyCourseLesson">Acheter la leçon</button>
+                                    {% endif %}                                    
+                                </div>
+                            {% endfor %}                       
+                        </div>
+                    {% else %}
+                        <p class="text-danger">⚠️ Vous devez vérifier votre email pour acheter une leçon ou un cursus.</p>
+                    {% endif %}
+                </div>
+            {% else %}
+                <p>Aucun cursus disponible pour ce thème.</p>
+            {% endfor %}
+        </div>
+        <a href="{{ path('app_home') }}" class="btn btn-secondary" id="backhome">Retour à l'accueil</a>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            attachStripeEventListeners(); // Recharge les boutons après rechargement de la page
+        });
+
+        function attachStripeEventListeners() { 
+            const stripe = Stripe("{{ stripe_public_key }}");
+
+            document.querySelectorAll(".checkout-button").forEach(button => {
+                button.addEventListener("click", function () {
+                    let lessonId = this.dataset.lessonId; // 🔥 Récupère l'ID de la leçon associée au bouton
+
+                    fetch("{{ path('stripe_checkout', { id: 'PLACEHOLDER' }) }}".replace("PLACEHOLDER", lessonId)) 
+                        .then(response => response.json())
+                        .then(session => {
+                            if (session.id) {
+                                return stripe.redirectToCheckout({ sessionId: session.id });
+                            } else {
+                                console.error("Session ID manquant");
+                            }
+                        })
+                        .catch(error => console.error("Erreur :", error));
+                });
+            });
+
+            document.querySelectorAll(".checkout-course-button").forEach(button => {
+                button.addEventListener("click", function () {
+                    const courseId = this.dataset.courseId;
+                    fetch(`/stripe/checkout/course/${courseId}`)
+                        .then(response => response.json())
+                        .then(session => {
+                            if (session.id) {
+                                return stripe.redirectToCheckout({ sessionId: session.id });
+                            } else {
+                                console.error("Session ID manquant");
+                            }
+                        })
+                        .catch(error => console.error("Erreur :", error));
+                });
+            });
+        }
+    </script>
+{% endblock %}

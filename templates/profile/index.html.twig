@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+    <div class="profile-container">
+        <h1>👤 Mon Profil</h1>
+        <p>E-mail : {{ app.user.email }}</p>
+        <p>Date d'inscription : {{ app.user.createdAt|date('d/m/Y') }}</p>
+
+        <h2>📜 Certifications obtenues</h2>
+        <ul>
+            {% for certification in app.user.certifications %}
+                <li>
+                    🎓 Certification "Knowledge Learning" pour le cursus 
+                    <strong>{{ certification.theme.name }}</strong> 
+                    obtenue le {{ certification.obtainedAt|date('d/m/Y') }}
+                </li>
+            {% else %}
+                <li>Aucune certification obtenue pour le moment.</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ path('app_home') }}" class="btn btn-secondary">Retour à l'accueil</a>
+    </div>
+{% endblock %}

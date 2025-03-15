@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation E-mail{% endblock %}
+
+{% block body %}
+    <h1>Confirmez votre email</h1>
+    <p>Votre email a bien été reçu. Cliquez sur le bouton ci-dessous pour finaliser l'activation de votre compte.</p>
+
+    <form action="{{ path('app_confirm_email') }}" method="POST">
+        <input type="hidden" name="userId" value="{{ userId|default('') }}">
+        <button type="submit" class="btn btn-primary">Activer mon compte</button>
+    </form>
+{% endblock %}
+
+
+
+

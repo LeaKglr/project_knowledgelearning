@@ -1,0 +1,68 @@
+.lesson-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.lesson-container h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.lesson-container p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.lesson-container h2 {
+    font-size: 22px;
+    color: #00497c;
+    margin-bottom: 10px;
+}
+
+.lesson-container iframe {
+    width: 100%;
+    height: 350px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.lesson-container a.video-link {
+    display: inline-block;
+    font-size: 16px;
+    color: #00497c;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.lesson-container .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.lesson-container .btn-primary {
+    background: #00497c;
+    color: #f1f8fc;
+    border: none;
+}
+
+.lesson-container .btn-success {
+    background: #82b864;
+    color: #f1f8fc;
+    border: none;
+    cursor: default;
+}
+
+.lesson-container .btn-secondary {
+    background: #384050;
+    color: #f1f8fc;
+    border: none;
+}

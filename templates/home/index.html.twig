@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+{% block body %}
+
+<div class="home">
+    <h1>Knowledge Learning</h1>
+
+    <div class="allthemes">
+        <div class="themes">
+            {% for theme in ['Musique', 'Informatique', 'Jardinage', 'Cuisine'] %}
+                <div>
+                    <a href="{{ path('theme_show', { 'name': theme }) }}">
+                        <img src="{{ asset('uploads/' ~ theme ~ '.jpg') }}" alt="Image {{ theme }}">
+                    </a>
+                    <h2>Thème : {{ theme }}</h2>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <div class="formRegister">
+        <h1>Créer un compte</h1>
+
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.email, { label: 'E-mail' }) }}
+            <div>
+                {{ form_row(registrationForm.password, { label: 'Mot de passe' }) }}
+                <input type="checkbox" id="toggle-password">Afficher le mot de passe
+                <span id="password-message" class="text-danger"></span> 
+            </div>
+            <button type="submit" class="btn">S'inscrire</button>
+        {{ form_end(registrationForm) }}
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let passwordInput = document.getElementById("registration_form_password");
+            let message = document.getElementById("password-message");
+            let togglePassword = document.getElementById("toggle-password");
+
+
+            togglePassword.addEventListener("change", function () {
+                passwordInput.type = this.checked ? "text" : "password";
+            });
+            
+            passwordInput.addEventListener("input", function () {
+                let password = passwordInput.value;
+                let regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/; // ✅ Au moins 1 majuscule, 1 chiffre, 1 caractère spécial
+
+                if (!regex.test(password)) {
+                    message.innerHTML = "Le mot de passe doit contenir au moins une majuscule, un chiffre et un caractère spécial.";
+                    message.style.color = "red";
+                } else {
+                    message.innerHTML = "Mot de passe valide ✅";
+                    message.style.color = "green";
+                }
+            });
+        });
+    </script>
+{% endblock %}

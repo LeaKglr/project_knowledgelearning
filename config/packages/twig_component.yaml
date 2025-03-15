@@ -1,0 +1,11 @@
+twig_component:
+    anonymous_template_directory: 'components/'
+    defaults:
+        # Namespace & directory for components
+        App\Twig\Components\: 'components/'
+
+twig:
+    file_name_pattern: '*.twig'
+    globals:
+        stripe_public_key: '%env(STRIPE_PUBLIC_KEY)%'
+ 

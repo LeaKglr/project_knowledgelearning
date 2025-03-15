@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon {{ lesson.title }}{% endblock %}
+
+{% block body %}
+<div class="lesson-container">
+    <h1>{{ lesson.title }}</h1>
+    <p>{{ lesson.description }}</p>
+
+    {% if lesson.video %}
+        <h2>Vidéo</h2>
+        {% if 'youtube.com' in lesson.video or 'youtu.be' in lesson.video %}
+            {% set videoId = lesson.video|replace({'https://www.youtube.com/watch?v=': '', 'https://youtu.be/': ''}) %}
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ videoId }}" frameborder="0" allowfullscreen></iframe>
+        {% elseif 'vimeo.com' in lesson.video %}
+            {% set videoId = lesson.video|replace({'https://vimeo.com/': ''}) %}
+            <iframe width="560" height="315" src="https://player.vimeo.com/video/{{ videoId }}" frameborder="0" allowfullscreen></iframe>
+        {% else %}
+            <p><a href="{{ lesson.video }}" target="_blank">Regarder la vidéo</a></p>
+        {% endif %}
+    {% endif %}
+
+    {% if lesson.id in validatedLessons %}
+        <button class="btn btn-success" disabled>✔ Leçon validée</button>
+    {% else %}
+        <a href="{{ path('lesson_validate', { id: lesson.id }) }}" class="btn btn-primary">Valider cette leçon</a>
+    {% endif %}
+
+    <a href="{{ path('theme_show', { name: lesson.course.theme.name }) }}" class="btn btn-secondary">
+        ← Retour aux Cursus
+    </a>
+</div>
+{% endblock %}
