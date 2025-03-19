@@ -26,7 +26,7 @@ class OrderDetail
     private ?Course $course = null;
 
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2, nullable: false)]
-    private ?float $price = 0; 
+    private ?string $price = '0.00'; 
 
     #[ORM\Column(type: "datetime")]
     private \DateTimeInterface $createdAt;
