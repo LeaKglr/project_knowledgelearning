@@ -19,14 +19,14 @@ class LoginControllerTest extends WebTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        self::ensureKernelShutdown(); // 🔥 Ensures the kernel is properly reset before creating a new client
+        self::ensureKernelShutdown(); // Ensures the kernel is properly reset before creating a new client
 
         // Create a new client for making HTTP requests
         $this->client = static::createClient();
 
         // Retrieve services from Symfony's container
-        $this->entityManager = self::getContainer()->get('doctrine.orm.entity_manager'); // ✅ Utilise `self::getContainer()`
-        $this->passwordHasher = self::getContainer()->get(UserPasswordHasherInterface::class); // ✅ Correctement récupéré depuis le conteneur
+        $this->entityManager = self::getContainer()->get('doctrine.orm.entity_manager'); 
+        $this->passwordHasher = self::getContainer()->get(UserPasswordHasherInterface::class); 
 
         // Remove any existing test user to avoid conflicts
         $existingUser = $this->entityManager->getRepository(User::class)->findOneBy(['email' => 'testuser@example.com']);

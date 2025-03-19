@@ -92,7 +92,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "docs": [ "phpdoc -d src -t public/docs" ],
+        "server-start": [ "symfony server:start & php bin/phpunit --testdox" ] 
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -105,6 +107,8 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^4.0",
+        "mockery/mockery": "^1.6",
+        "phpspec/prophecy": "^1.20",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "7.2.*",
         "symfony/css-selector": "7.2.*",

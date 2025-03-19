@@ -24,7 +24,7 @@ class Order
     private string $status = 'paid';
 
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2, nullable: false)]
-    private ?float $totalPrice = 0; 
+    private ?string $totalPrice = '0.00'; 
 
     #[ORM\Column(type: "datetime")]
     private \DateTimeInterface $createdAt;
