@@ -141,7 +141,6 @@ class UserCrudController extends AbstractCrudController
             DateTimeField::new('updatedAt', 'Mis à jour le')
                 ->hideOnForm(), // Auto-generated on modification
 
-            AssociationField::new('purchasedLessons', 'Leçons achetées')->hideOnForm(),
             AssociationField::new('certifications', 'Certifications obtenues')->hideOnForm(),
             AssociationField::new('lessonValidations', 'Leçons validées')->hideOnForm(),
         ];
