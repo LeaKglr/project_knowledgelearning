@@ -126,7 +126,7 @@ class LessonController extends AbstractController
         }
 
         // If all courses in the theme are validated, award certification
-        if ($validatedCourses === count($theme->getCourses())) {
+        if ($validatedCourses === count($theme->getCourse())) {
             $certification = new Certification($user, $theme);
             $entityManager->persist($certification);
             $entityManager->flush();
