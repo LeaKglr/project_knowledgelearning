@@ -61,7 +61,7 @@
     <script>
 
         document.addEventListener("DOMContentLoaded", function () {
-            attachStripeEventListeners(); // Recharge les boutons après rechargement de la page
+            attachStripeEventListeners();
         });
 
         function attachStripeEventListeners() { 
@@ -69,7 +69,7 @@
 
             document.querySelectorAll(".checkout-button").forEach(button => {
                 button.addEventListener("click", function () {
-                    let lessonId = this.dataset.lessonId; // 🔥 Récupère l'ID de la leçon associée au bouton
+                    let lessonId = this.dataset.lessonId; 
 
                     fetch("{{ path('stripe_checkout', { id: 'PLACEHOLDER' }) }}".replace("PLACEHOLDER", lessonId)) 
                         .then(response => response.json())
